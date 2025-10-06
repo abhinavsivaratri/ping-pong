@@ -20,3 +20,14 @@ class Paddle:
             self.move(-self.speed, screen_height)
         elif ball.y > self.y + self.height:
             self.move(self.speed, screen_height)
+    
+    # =================================================================
+# File: game/paddle.py
+# New Method to add: reset
+# =================================================================
+
+    # ... (existing methods: move, rect, auto_track) ...
+
+    def reset(self, screen_height):
+        # Center the paddle vertically
+        self.y = screen_height // 2 - (self.height // 2)

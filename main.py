@@ -1,6 +1,10 @@
 import pygame
 from game.game_engine import GameEngine
 
+# Task 4: Initialize the mixer for sound BEFORE pygame.init()
+pygame.mixer.pre_init(44100, -16, 2, 512) # Optional: improves sound latency
+pygame.init()
+
 # Initialize pygame/Start application
 pygame.init()
 
@@ -27,6 +31,26 @@ def main():
         for event in pygame.event.get():
             if event.type == pygame.QUIT:
                 running = False
+            
+def main():
+    running = True
+    while running:
+        SCREEN.fill(BLACK)
+        for event in pygame.event.get():
+            if event.type == pygame.QUIT:
+                running = False
+            
+            if event.type == pygame.KEYDOWN: # Check for any key press
+                if engine.game_state == "game_over":
+                    # Task 3: Handle Replay Input
+                    if event.key == pygame.K_ESCAPE:
+                        running = False
+                    elif event.key == pygame.K_3:
+                        engine.reset_game(3)
+                    elif event.key == pygame.K_5:
+                        engine.reset_game(5)
+                    elif event.key == pygame.K_7:
+                        engine.reset_game(7)
 
         engine.handle_input()
         engine.update()
